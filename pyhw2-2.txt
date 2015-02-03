@@ -1,0 +1,19 @@
+Multiple exons from genomic DNA
+The file genomic_dna.txt contains a section of genomic DNA, and the file exons.txt
+contains a list of start/stop positions of exons. Each exon is on a separate line and
+the start and stop positions are separated by a comma. Write a program that will
+extract the exon segments, concatenate them, and write them to a new file.
+
+gDNA = open("genomic_dna.txt", "r").read()
+exon = open("exons.txt", "r")
+coding = ""
+for lines in exon:
+    sexon = lines.split(",")
+    start = int(sexon[0])
+    stop = int(sexon[1])
+    DNAexon = gDNA[start:stop]
+    coding = coding + DNAexon
+    print("The coding sequence is: " + coding)
+gDNA_coding = open("gDNA_coding.txt", "w")
+gDNA_coding.write(coding)
+gDNA_coding.close()
