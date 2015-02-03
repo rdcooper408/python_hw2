@@ -1,0 +1,60 @@
+Exercises
+Note: all the files mentioned in these exercises can be found in the chapter_4 folder
+of the exercises download.
+
+
+
+Processing DNA in a file
+The file input.txt contains a number of DNA sequences, one per line. Each sequence
+starts with the same 14 base pair fragment – a sequencing adapter that should have
+been removed. Write a program that will:
+(a) trim this adapter and write the cleaned sequences to a new file and 
+
+
+input = open("input.txt")
+output = open("DNAcut.txt", "w")
+for lines in input:
+   DNAcut = lines[14:]
+   output.write(DNAcut)
+
+
+
+(b) print the length of each sequence to the screen.
+
+input = open("input.txt")
+output = open("DNAcut.txt", "w")
+for lines in input:
+   DNAcut = lines[14:]
+   output.write(DNAcut)
+   print("The sequence length is " + str(len(DNAcut)))
+
+
+
+Multiple exons from genomic DNA
+The file genomic_dna.txt contains a section of genomic DNA, and the file exons.txt
+contains a list of start/stop positions of exons. Each exon is on a separate line and
+the start and stop positions are separated by a comma. Write a program that will
+extract the exon segments, concatenate them, and write them to a new file.
+
+gDNA = open("genomic_dna.txt", "r").read()
+exon = open("exons.txt", "r")
+coding = ""
+for lines in exon:
+    sexon = lines.split(",")
+    start = int(sexon[0])
+    stop = int(sexon[1])
+    DNAexon = gDNA[start:stop]
+    coding = coding + DNAexon
+    print("The coding sequence is: " + coding)
+gDNA_coding = open("gDNA_coding.txt", "w")
+gDNA_coding.write(coding)
+gDNA_coding.close()
+    
+    
+    
+    
+    
+    
+    
+    
+    
